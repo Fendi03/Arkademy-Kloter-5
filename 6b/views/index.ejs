@@ -1,0 +1,93 @@
+<%- include('layout/header') -%>
+<%- include('layout/navbar') -%>
+<!-- Button trigger modal -->
+
+      <table class ="table">
+        <thead>
+          <tr>
+                <th>No</th>
+                <th>Cashier</th>
+                <th>Product</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Action</th>
+              </tr>
+              </thead>
+              <tbody>
+                <% dataShop.forEach((v)=>{ %>
+                  <tr>
+                    <th scope="row"><%= v.id%></th>
+                    <td><%= v.namecas %></td>
+                    <td><%= v.product%></td>
+                    <td><%= v.name %></td>
+                    <td><%= v.price%></td>
+                    <td>
+                      <a href="" data-toggle="modal" data-target="#editModal<%= v.id %>" >Edit</a>
+                        | 
+                        <a href="/delete?id=<%= v.id %>" >Delete</a>
+                        </td>
+                  </tr>
+                  <% }); %>
+              </tbody>
+          </table>
+    </div>
+    </tbody>
+  </table>
+</div>
+
+  <% dataShop.forEach((v)=>{ %>
+    <div class="modal fade" id="editModal<%= v.id%>" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">EDIT</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+              <div class="card">
+                  <div class="card-body">
+                      <form action="/update" method="POST">
+                        <input type="hidden" value="<%= v.id%>" name="id">
+                          <div class="form-group">
+                              <label for="cashier">Cashier</label>
+                              <select class="form-control" id="cashier" name="id_cashier">
+                                <% dataCashier.forEach((v)=>{%>
+                                <option value="<%= v.id%>"><%= v.namecas%></option>
+                                <%})%>
+                              </select>
+                            </div>
+                          <div class="form-group">
+                              <label for="category">Category</label>
+                              <select class="form-control" id="category" name="id_category">
+                                <% dataCategory.forEach((v)=>{%>
+                                  <option value="<%= v.id%>"><%= v.name%></option>
+                                  <%})%>
+                                </select>
+                              </select>
+                            </div>
+                            <div class="form-group">
+                              <label for="product">Product</label>
+                              <input type="text" class="form-control" id="product" name="product" value="<%= v.product%>">
+                            </div>
+                            <div class="form-group">
+                              <label for="price">Price</label>
+                              <input type="number" class="form-control" id="price" name="price" value="<%= v.price%>">
+                            </div>
+                          
+                      <button type="submit" class="btn btn-warning text-white">EDIT</button>
+                    </form>
+                  </div>
+                </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% }); %>
+
+
+
+
+
+<%- include('layout/footer') -%>
