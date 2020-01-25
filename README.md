@@ -8,7 +8,8 @@ Untuk soal nomer 4 menggunakan java, untuk membukanya bisa menggunakan CMD denga
 4. ketik "java empat", tekan enter lagi
 5. program java sudah terbuka di cmd.
 
-Query untuk soal 6a
+Query untuk soal 6a :
+
 select T.id, cashier.namecas as cashier, T.category, T.name, T.price from (select product.id, product.id_cashier as cashier, product.name, category.name as category, product.price from product right join category on product.id_category = category.id) AS T inner join cashier on T.cashier = cashier.id order by T.id;
 
 ![2020-01-25 (13)](https://user-images.githubusercontent.com/57419280/73123547-c5ec6d00-3fc3-11ea-875c-ce853b5fa160.png)
